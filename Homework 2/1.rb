@@ -69,7 +69,7 @@ module Enumerable
 			if self.kind_of? Array then
 				self == self.reverse
 			else
-				return false
+				self.to_a.palindrome?
 			end
 		else
 			super
@@ -80,3 +80,4 @@ end
 puts ["a", "b", "c", "b", "a"].palindrome? == true
 puts [1,2,3,4,3,2].palindrome? == false
 puts pvalue = {"hello"=> "world"}.palindrome?
+puts (1..2).palindrome?
