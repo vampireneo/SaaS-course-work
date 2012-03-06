@@ -1,11 +1,11 @@
 =begin
 
-In lecture we saw how attr_accessor uses metaprogramming to create getters 
+In lecture we saw how attr_accessor uses metaprogramming to create getters
 and setters for object attributes on the fly.
-Define a method attr_accessor_with_history that provides the same functionality as 
+Define a method attr_accessor_with_history that provides the same functionality as
 attr accessor but also tracks every value the attribute has ever had:
 
-class Foo 
+class Foo
 	attr_accessor_with_history :bar
 end
 
@@ -15,26 +15,26 @@ f.bar = :wowzo  # => :wowzo
 f.bar = 'boo!'  # => 'boo!'
 f.bar_history # => [nil, 3, :wowzo, 'boo!']
 
-We'll start you off.  The first thing to notice is that if we define 
-attr_accessor_with_history in class Class, we can use it as in the snippet 
-above. This is because, as ELLS mentions, in Ruby  a class is simply an object of 
-class Class.  (If that makes your brain hurt, just don't worry about it for now.  It'll 
+We'll start you off.  The first thing to notice is that if we define
+attr_accessor_with_history in class Class, we can use it as in the snippet
+above. This is because, as ELLS mentions, in Ruby  a class is simply an object of
+class Class.  (If that makes your brain hurt, just don't worry about it for now.  It'll
 come.)  The second thing to notice is that Ruby provides a method class_eval
-that takes a string and evaluates it in the context of the current class, that is, the 
-class from which you're calling attr_accessor_with_history.  This string will 
-need to contain a method definition that implements a setter-with-history for the 
-desired attribute attr_name. 
+that takes a string and evaluates it in the context of the current class, that is, the
+class from which you're calling attr_accessor_with_history.  This string will
+need to contain a method definition that implements a setter-with-history for the
+desired attribute attr_name.
 
-• Don't forget that the very first time the attribute receives a value, its history 
-  array will have to be initialized. 
-• Don't forget that instance variables are referred to as @bar within getters and 
+• Don't forget that the very first time the attribute receives a value, its history
+  array will have to be initialized.
+• Don't forget that instance variables are referred to as @bar within getters and
   setters, as Section 3.4 of ELLS explains.
-• Although the existing attr_accessor can handle multiple arguments (e.g. 
-  attr_accessor :foo, :bar), your version just needs to handle a single 
+• Although the existing attr_accessor can handle multiple arguments (e.g.
+  attr_accessor :foo, :bar), your version just needs to handle a single
   argument.
-• Your implementation should be genreal enough to work in the context of any 
+• Your implementation should be genreal enough to work in the context of any
   class and for attributes of any (legal) variable name
-• History of instance variables should be maintained separately for each object 
+• History of instance variables should be maintained separately for each object
   instance. that is, if you do
 
   f = Foo.new
